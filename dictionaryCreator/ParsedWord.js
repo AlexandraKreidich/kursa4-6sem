@@ -12,7 +12,6 @@ const findInterception = (firstString, secondString) => {
 
 class ParsedWord {
   constructor(wordInfo) {
-    // console.log(wordInfo)
     wordInfo = wordInfo.filter(info => !!info && !!info.replace('\r', ''))
     .map(entry => {
       const end = entry.indexOf('=')
