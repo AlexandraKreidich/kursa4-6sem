@@ -24,6 +24,9 @@ class ParsedWord {
     this.mainId = wordInfo[0].substring(1)
     wordInfo.shift()
     this.commonPart = wordInfo.reduce(findInterception)
+    if (this.commonPart.includes('_')) {
+      this.commonPart = this.commonPart.slice(0, this.commonPart.indexOf('_'))
+    }
     this.changableParts = []
     wordInfo.forEach((unprocessedPart) => {
       const unprocessedPartArray = unprocessedPart.split('_')
