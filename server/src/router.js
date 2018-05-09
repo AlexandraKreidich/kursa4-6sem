@@ -3,6 +3,6 @@ const handler = require('./handler')
 
 const appRouter = new Router()
 
-appRouter.get('/annotation', handler.findAnnotation)
+appRouter.get('/annotations', handler.findAnnotations)
 
 module.exports = appRouter
