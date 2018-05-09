@@ -2,7 +2,7 @@ const findInterception = (firstString, secondString) => {
   let result = ''
   const length = Math.min(firstString.length, secondString.length)
   for (let i = 0; i < length; ++i) {
-    if (firstString[i] != secondString[i]) {
+    if (firstString[i] !== secondString[i]) {
       return result
     }
     result += firstString[i]
@@ -11,14 +11,14 @@ const findInterception = (firstString, secondString) => {
 }
 
 class ParsedWord {
-  constructor(wordInfo) {
+  constructor (wordInfo) {
     wordInfo = wordInfo.filter(info => !!info && !!info.replace('\r', ''))
-    .map(entry => {
-      const end = entry.indexOf('=')
-      return entry.slice(0, end).trim()
-    })
+      .map(entry => {
+        const end = entry.indexOf('=')
+        return entry.slice(0, end).trim()
+      })
     if (!wordInfo.length) {
-      return;
+      return
     }
 
     this.mainId = wordInfo[0].substring(1)
