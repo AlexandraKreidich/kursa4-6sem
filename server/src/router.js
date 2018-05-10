@@ -5,4 +5,6 @@ const appRouter = new Router()
 
 appRouter.get('/annotations', handler.findAnnotations)
 
+appRouter.get('/definitions', handler.getDefinitions)
+
 module.exports = appRouter

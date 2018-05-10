@@ -13,7 +13,19 @@ const findAnnotations = async ctx => {
       })
     )
 
-    const res = flatten(mainParts.map((mainPart, i) => addParts[i].map(addPart => `${mainPart.code}${addPart.code}`)))
+    const codes = flatten(mainParts.map((mainPart, i) => addParts[i].map(addPart => `${mainPart.code}${addPart.code}`)))
+
+    const res = await db.query('select * from codes where code in (?)', [codes])
+
+    ctx.body = res
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const getDefinitions = async ctx => {
+  try {
+    const res = await db.query('select * from codes')
 
     ctx.body = res
   } catch (error) {
@@ -22,5 +34,6 @@ const findAnnotations = async ctx => {
 }
 
 module.exports = {
-  findAnnotations
+  findAnnotations,
+  getDefinitions
 }
