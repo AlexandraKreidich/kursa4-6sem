@@ -1,0 +1,23 @@
+.buttons-container {
+  display: flex;
+  justify-content: space-between; }
+  .buttons-container .input-file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1; }
+  .buttons-container .button {
+    background-color: #CDE6FF;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    width: 29%;
+    padding: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px black;
+    border-radius: 15px;
+    cursor: pointer; }
+    .buttons-container .button:active {
+      background-color: red; }
