@@ -1,0 +1,22 @@
+@import '../../imports.scss';
+
+.word-info {
+  @extend %section-main;
+  background-color: #d6dcea;
+  grid-column: 2;
+  margin-left: 10px;
+  padding: 10px;
+
+  .text {
+    text-transform: uppercase;
+  }
+
+  .annotations {
+    list-style: none;
+    padding: 0;
+
+    li {
+      padding-bottom: 10px;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import Word from '../models/Word'
+import { Word } from '../models/Word'
 
 export const parseTextToWords = (text) => {
   const words = text.split(' ')

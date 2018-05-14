@@ -8,7 +8,7 @@ export default class extends Component {
   constructor () {
     super()
 
-    this.handleSelection = this.handleSelection.bind(this)
+    this.handleChangeSelection = this.handleChangeSelection.bind(this)
 
     this.quillProps = {
       theme: 'bubble',
@@ -17,13 +17,23 @@ export default class extends Component {
     }
   }
 
-  handleSelection (a, b, c) {
-    console.log(11, a, b, c.getSelection())
+  handleChangeSelection (range, source, editor) {
+    const { text, handleChangeSelection } = this.props
+    if (!range || !range.length) {
+      return
+    }
+
+    return handleChangeSelection(text.substr(range.index, range.length + 1).trim())
   }
 
   render () {
     return (
-      <Quill className='editor' value={this.props.text} onChangeSelection={this.handleSelection} {...this.quillProps} />
+      <Quill
+        className={this.props.selectedWord ? 'editor--shrinked' : 'editor'}
+        value={this.props.text}
+        onChangeSelection={this.handleChangeSelection}
+        {...this.quillProps}
+      />
     )
   }
 }

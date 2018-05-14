@@ -1,4 +1,6 @@
 .App {
   grid-column: 2;
+  display: grid;
+  grid-template-columns: 760px 380px;
   padding: 10px 0;
 }

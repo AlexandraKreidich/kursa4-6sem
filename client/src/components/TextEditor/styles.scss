@@ -1,5 +1,19 @@
+@import '../../imports.scss';
+
+%editor {
+  @extend %section-main;
+  grid-column: 1 / 3;
+}
+
+%editor--shrinked {
+  @extend %editor;
+  grid-column: 1 / 2;
+}
+
 .editor {
-  box-shadow: 0 0 1px 1px black;
-  min-height: 350px;
-  margin-top: 10px;
+  @extend %editor;
+}
+
+.editor--shrinked {
+  @extend %editor--shrinked;
 }

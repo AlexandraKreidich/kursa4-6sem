@@ -1,4 +1,4 @@
-export default class {
+export class Word {
   constructor (word) {
     this.word = word
     this.annotations = []

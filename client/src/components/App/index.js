@@ -2,9 +2,10 @@
 import React, { Component } from 'react'
 import TextEditor from '../TextEditor'
 import Buttons from '../Buttons'
+import WordInfo from '../WordInfo'
 import { getAnnotations } from '../../services/annotations'
 import { parseTextToWords, assembleTextFromWords } from '../../services/files'
-import Word from '../../models/Word'
+import { Word } from '../../models/Word'
 
 import './styles.css'
 
@@ -20,9 +21,11 @@ class App extends Component {
 
     this.getAnnotations = this.getAnnotations.bind(this)
     this.openText = this.openText.bind(this)
+    this.selectWord = this.selectWord.bind(this)
 
     this.state = {
-      words: []
+      words: [],
+      selectedWord: null
     }
   }
 
@@ -44,12 +47,20 @@ class App extends Component {
     this.reader.readAsText(file)
   }
 
+  selectWord (selection) {
+    const { words } = this.state
+    this.setState({selectedWord: words.find(({word}) => word.includes(selection))})
+  }
+
   render () {
+    const { selectedWord } = this.state
+    const { getAnnotations, openText, selectWord } = this
     const text = assembleTextFromWords(this.state.words)
     return (
       <div className='App'>
-        <Buttons getAnnotations={this.getAnnotations} openText={this.openText} />
-        <TextEditor text={text} />
+        <Buttons getAnnotations={getAnnotations} openText={openText} />
+        <TextEditor text={text} handleChangeSelection={selectWord} selectedWord={selectedWord} />
+        {selectedWord && <WordInfo word={selectedWord} />}
       </div>
     )
   }
