@@ -8,7 +8,7 @@ export default (props) => {
       <input type='file' name='file' id='file' className='input-file' accepts='text/plain' multiple='false' onChange={props.openText} />
       <label htmlFor='file' className='button'>open text</label>
       <div className='button' onClick={props.getAnnotations}>annotate text</div>
-      <div className='button'>save text</div>
+      <div className='button' onClick={props.saveText}>save text</div>
     </div>
   )
 }

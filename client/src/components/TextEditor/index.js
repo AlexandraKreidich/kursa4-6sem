@@ -23,16 +23,22 @@ export default class extends Component {
       return
     }
 
-    return handleChangeSelection(text.substr(range.index, range.length + 1).trim())
+    let word = text.substr(range.index, range.length + 1).trim()
+    if (/_/.test(word)) {
+      word = word.split('_')[0]
+    }
+    return handleChangeSelection(word)
   }
 
   render () {
+    const { selectedWord, text } = this.props
+    const { handleChangeSelection, quillProps } = this
     return (
       <Quill
-        className={this.props.selectedWord ? 'editor--shrinked' : 'editor'}
-        value={this.props.text}
-        onChangeSelection={this.handleChangeSelection}
-        {...this.quillProps}
+        className={selectedWord ? 'editor--shrinked' : 'editor'}
+        value={text}
+        onChangeSelection={handleChangeSelection}
+        {...quillProps}
       />
     )
   }

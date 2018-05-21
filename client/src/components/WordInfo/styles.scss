@@ -18,5 +18,31 @@
     li {
       padding-bottom: 10px;
     }
+
+    .remove-ann {
+      cursor: pointer;
+    
+      &::after {
+        content: ' | '
+      }
+    }
   }
+
+  .ann-list {
+    background-color: #fff;
+    max-height: 200px;
+    overflow-y: scroll;
+    padding: 5px;
+    list-style: none;
+    border: 1px solid black;
+
+    li {
+      cursor: pointer;
+  
+      &::before {
+        content: '> '
+      }
+    }
+  }
+
 }

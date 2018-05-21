@@ -1,3 +1,5 @@
+import { uniqWith, isEqual } from 'lodash'
+
 export class Word {
   constructor (word) {
     this.word = word
@@ -5,9 +7,10 @@ export class Word {
   }
 
   static addAnnotations (word, annotations) {
+    const _annotations = uniqWith(word.annotations.concat(annotations), isEqual)
     return {
       ...word,
-      annotations: word.annotations.concat(annotations)
+      annotations: _annotations
     }
   }
 
