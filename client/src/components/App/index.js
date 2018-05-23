@@ -70,7 +70,12 @@ class App extends Component {
 
   selectWord (selection) {
     const { words } = this.state
-    this.setState({selectedWord: words.find(({word}) => word.includes(selection))})
+    let selectedWord = words.find(({word}) => word === selection)
+    if (!selectedWord) {
+      selectedWord = words.find(({word}) => word.includes(selection))
+    }
+
+    this.setState({ selectedWord })
   }
 
   saveText () {
@@ -87,7 +92,8 @@ class App extends Component {
   }
 
   addAnnotation (word, code) {
-    const editedWord = { ...word, annotations: uniqWith(word.annotations.concat({code, definition: 'kek'}), isEqual) }
+    const def = this.state.annList.find(ann => ann.code === code).definition
+    const editedWord = { ...word, annotations: uniqWith(word.annotations.concat({code, definition: def}), isEqual) }
     const index = this.state.words.indexOf(word)
     this.setState({
       words: [...this.state.words.slice(0, index), editedWord, ...this.state.words.slice(index + 1)],

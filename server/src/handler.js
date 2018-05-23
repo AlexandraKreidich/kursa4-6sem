@@ -14,6 +14,10 @@ const findAnnotations = async ctx => {
     )
 
     const codes = flatten(mainParts.map((mainPart, i) => addParts[i].map(addPart => `${mainPart.code}${addPart.code}`)))
+    if (!codes.length) {
+      ctx.body = []
+      return
+    }
 
     const res = await db.query('select * from codes where code in (?)', [codes])
 

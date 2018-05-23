@@ -3,7 +3,7 @@ import FileSaver from 'file-saver'
 import { Word } from '../models/Word'
 
 export const parseTextToWords = (text) => {
-  const words = text.match(/([а-я]+|\.|!|\?|,)/ig)
+  const words = text.match(/([а-я]+|\.|!|\?|,)(_[a-z0-9_,!?.]*)?/ig)
 
   return words.map(word => new Word(word))
 }
