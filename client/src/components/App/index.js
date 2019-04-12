@@ -83,17 +83,16 @@ class App extends Component {
     saveText(text)
   }
 
-  removeAnnotation (word, code) {
-    const editedWord = {...word, annotations: word.annotations.filter(ann => ann.code !== code)}
+  removeAnnotation(word, code) {
+    const editedWord = { ...word, annotations: word.annotations.filter(ann => ann !== code) }
     const index = this.state.words.indexOf(word)
     this.setState({
       words: [...this.state.words.slice(0, index), editedWord, ...this.state.words.slice(index + 1)],
       selectedWord: editedWord})
   }
 
-  addAnnotation (word, code) {
-    const def = this.state.annList.find(ann => ann.code === code).definition
-    const editedWord = { ...word, annotations: uniqWith(word.annotations.concat({code, definition: def}), isEqual) }
+  addAnnotation(word, code) {
+    const editedWord = { ...word, annotations: uniqWith(word.annotations.concat(code), isEqual) }
     const index = this.state.words.indexOf(word)
     this.setState({
       words: [...this.state.words.slice(0, index), editedWord, ...this.state.words.slice(index + 1)],

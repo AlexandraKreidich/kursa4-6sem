@@ -21,7 +21,7 @@ const findAnnotations = async ctx => {
 
     const res = await db.query('select * from codes where code in (?)', [codes])
 
-    ctx.body = res
+    ctx.body = codes
   } catch (error) {
     console.log(error)
   }
@@ -31,7 +31,11 @@ const getDefinitions = async ctx => {
   try {
     const res = await db.query('select * from codes')
 
-    ctx.body = res
+    const resObj = {};
+    res.forEach(elem => resObj[elem.code] = elem.definition);
+
+    ctx.body = resObj;
+
   } catch (error) {
     console.log(error)
   }

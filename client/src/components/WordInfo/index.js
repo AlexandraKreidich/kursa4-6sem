@@ -38,22 +38,22 @@ export default class extends Component {
       <div className='word-info'>
         <h3 className='text'>Word: {word.word} </h3>
         {!isListOpen &&
-        <React.Fragment>
-          <h4>Annotations:</h4>
-          <ul className='annotations' onClick={this.removeAnnotation}>
-            {word.annotations.map(ann => <li id={ann.code} key={ann.code}><span className='remove-ann'>x</span>{ann.code} - {ann.definition}</li>)}
-          </ul>
-          <button onClick={this.openList}>Add more</button>
-        </React.Fragment>
+          <React.Fragment>
+            <h4>Annotations:</h4>
+            <ul className='annotations' onClick={this.removeAnnotation}>
+              {word.annotations.map(ann => <li id={ann} key={ann}><span className='remove-ann'>x</span>{ann} - {list[ann]}</li>)}
+            </ul>
+            <button onClick={this.openList}>Add more</button>
+          </React.Fragment>
         }
         {isListOpen &&
           <React.Fragment>
             <ul onClick={this.pickAnnotation} className='ann-list'>
-              {list.map(ann => <li id={ann.code} key={ann.code}>{ann.code} - {ann.definition}</li>)}
+              {Object.keys(list).map(ann => <li id={ann} key={ann}>{ann} - {list[ann]}</li>)}
             </ul>
             <div className='picked'>
               Picked: {word.annotations.reduce((prev, next) => {
-                return prev ? `${prev}, ${next.code}` : next.code
+                return prev ? `${prev}, ${next}` : next
               }, '')}
             </div>
             <button className='go-back' onClick={this.closeList}>Go Back</button>

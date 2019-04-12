@@ -15,7 +15,7 @@ export const assembleTextFromWords = (words) => {
 
   return words.reduce((prev, cur) => {
     const annotations = cur.annotations.reduce((prevAnn, curAnn) => {
-      return `${prevAnn}_${curAnn.code}`
+      return `${prevAnn}_${curAnn.code || curAnn}`
     }, '')
 
     return `${prev} ${cur.word}${annotations}`
